@@ -1,7 +1,8 @@
-all: topartists
+all: topartists lfmfs
 
-lfmfs:
-	gcc -o lfmfs `pkg-config --cflags --libs fuse` main.c
+lfmfs: main.c
+	gcc -c `pkg-config --cflags fuse` -o lfmfs.o $?
+	g++ `pkg-config --libs fuse` `curl-config --libs` -lexpat topartists.o lfmfs.o -o lfmfs
 
-topartists:
-	g++ -o topartists -I /opt/local/include `curl-config --cflags --libs` -L/opt/local/lib/ -lexpat topartists.cpp
+topartists: topartists.cpp
+	g++ -c -o topartists.o `curl-config --cflags` $?

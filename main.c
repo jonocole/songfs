@@ -6,6 +6,13 @@
 #include <errno.h>
 #include <fcntl.h>
 
+struct ArtistList {
+    char* data[50];
+    int index;
+};
+
+struct ArtistList* request( const char* url );
+
 static const char *hello_str = "Hello World!\n";
 static const char *hello_path = "/hello";
 
@@ -39,8 +46,12 @@ static int hello_readdir(const char *path, void *buf, fuse_fill_dir_t filler,
 
     filler(buf, ".", NULL, 0);
     filler(buf, "..", NULL, 0);
-    filler(buf, hello_path + 1, NULL, 0);
+    struct ArtistList* list = request( "http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=jonocole&api_key=b25b959554ed76058ac220b7b2e0a026" );
 
+    int i;
+    for( i = 0; i < 50 && list->data[i]; ++i )
+        filler( buf, list->data[i], NULL, 0 );
+    
     return 0;
 }
 
