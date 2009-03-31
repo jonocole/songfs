@@ -1,0 +1,14 @@
+lfmfs
+=====
+A filesystem representing data on last.fm.
+
+Note: It's still in very early stages.
+
+Dependancies
+============
+libexpat
+libfuse
+
+Authors
+=======
+Jono Cole <jonocole@gmail.com>
