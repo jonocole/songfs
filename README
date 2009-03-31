@@ -8,6 +8,7 @@ Dependancies
 ============
 libexpat
 libfuse
+libcurl
 
 Authors
 =======
