@@ -7,7 +7,7 @@
 #include <fcntl.h>
 #include "topartists.h"
 
-static const char* username = "mxcl";
+static const char* username = "jonocole";
 
 static int getAttr( char* name, const char* path, struct stat *stbuf )
 {
